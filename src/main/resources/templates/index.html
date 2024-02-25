@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Bootstrap light background color */
+        }
+        .container {
+           max-width: 40%;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff; /* Bootstrap white background color */
+            position: relative;
+        }
+        .form-heading {
+            text-align: center;
+            margin-bottom: 30px;
+            color: red; /* Bold red color */
+            font-weight: bold; /* Bold font weight */
+        }
+        .form-group label {
+            font-weight: bold;
+            color: black; /* Bold black color */
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-reset {
+            margin-right: 10px;
+        }
+        .link-primary {
+            color: #0d6efd; /* Bootstrap primary color */
+            text-decoration: none;
+        }
+        .link-primary:hover {
+            text-decoration: underline;
+        }
+        .background-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            font-weight: bold;
+            color: rgba(255, 0, 0, 0.3); /* Shaded red color */
+            user-select: none; /* Prevent text selection */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-text">TELAVERGE</div>
+        <h3 class="form-heading">==  PRODUCT STORE  ==</h3>
+        
+        <p th:text="${msg}" class="text-success"></p>
+        <form th:action="@{/save}" th:object="${products}" method="post">
+            <div class="mb-3">
+                <input type="hidden" th:field="*{productId}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="productName" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="productName" th:field="*{productName}" placeholder="Enter product name" required>
+           
+            </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Price:</label>
+                <div class="input-group">
+                    <span class="input-group-text">Rs.</span>
+                    <input type="number" class="form-control" id="productPrice" th:field="*{productPrice}" placeholder="Enter product price"  required>
+        
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="productQuantity" class="form-label">Quantity:</label>
+                <input type="number" class="form-control" id="productQuantity" th:field="*{productQuatity}" placeholder="Enter product quantity" required>
+           
+          
+            </div>
+            <div class="mb-3">
+                <label for="productCategory" class="form-label">Category:</label>
+                
+            <select th:field="*{productCategory}"  required>
+           
+           <option value="">-Select-</option>
+            <option value="Electronic">Electronics</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Sports">Sports</option>
+            <option value="Health">Health </option>
+            <option value="Beauty">Beauty </option>
+            <option value="Fitness">Fitness</option>
+            <option value="Kitchen">Kitchen</option>
+            <option value="Books">Books</option>
+             <option value="Decoration">Decoration</option>
+              <option value="Toys">Toys</option>
+            
+            </select>
+           
+            </div>
+            <div class="mb-3">
+				 
+                <button type="submit" class="btn btn-primary">Save</button>
+               
+            </div>
+        </form>
+        <div class="pt-3 pb-3">
+            <a href="/display" class="btn btn-secondary">View All Products</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
